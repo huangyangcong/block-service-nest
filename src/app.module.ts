@@ -7,6 +7,7 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { RouterModule } from 'nest-router';
 
+
 import { AwsModule } from './aws';
 import { BaseModule } from './base';
 import { CommonModule, ExceptionsFilter, LoggerMiddleware } from './common';
@@ -34,9 +35,11 @@ import { SampleModule } from './sample';
       inject: [ConfigService],
     }),
     CacheModule.register({
-      ttl: 5, // seconds
-      max: 10, // maximum number of items in cache
-    }),
+      host: 'localhost',
+      port: 6379,
+      ttl: 10, // 缓存更新时间
+      max: 15,
+    }), 
     // Static Folder
     // https://docs.nestjs.com/recipes/serve-static
     // https://docs.nestjs.com/techniques/mvc

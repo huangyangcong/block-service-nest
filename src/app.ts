@@ -26,7 +26,6 @@ async function bootstrap(): Promise<void> {
     app.useLogger(await app.resolve(Logger));
     app.enable('trust proxy');
   }
-
   // Express Middleware
   middleware(app);
 
